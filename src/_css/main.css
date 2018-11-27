@@ -171,6 +171,12 @@ pre {
   white-space: pre;
   overflow: auto;
 }
+pre.language-shaky {
+  background: #fff;
+  font-size: 30px;
+  margin-left : 0px;
+  width : 100%;
+}
 pre, article footer {
   width: calc(100% + var(--offset) * 2);
   margin-left: calc(-1 * var(--offset));

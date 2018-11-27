@@ -21,6 +21,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const installPrismLanguages = require('./prism-languages.js');
+const shakyDiagrams = require('./shaky.js');
 
 const markdownItConfig = {
   html: true,
@@ -45,6 +46,23 @@ module.exports = function(eleventyConfig) {
       installPrismLanguages(Prism);
     },
   });
+
+  {
+    // Hijack the highlighter.
+    const originalHighlighter = eleventyConfig.markdownHighlighter;
+    eleventyConfig.addMarkdownHighlighter((str, language) => {
+      if (language === "shaky") {
+        const svg = shakyDiagrams.convertToSVG(str);
+        const x = svg.boundLeft;
+        const y = svg.boundTop;
+        const w = svg.boundRight - x;
+        const h = svg.boundBottom - y;
+        return `<pre class="language-shaky">\n`+
+            `<svg viewBox="${x} ${y} ${w} ${h}">\n${svg.body}\n` +
+            `</svg>\n</pre>\n`;
+      } else return originalHighlighter(str, language);
+    });
+  }
 
   eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
 
