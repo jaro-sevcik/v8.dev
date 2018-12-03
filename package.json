@@ -33,6 +33,7 @@
     "markdownlint-cli": "^0.13.0",
     "postcss-cli": "^6.0.1",
     "postcss-custom-properties": "^8.0.8",
+    "shaky-diagram": "^1.0.1",
     "superstatic": "^6.0.3",
     "workbox-cli": "^4.0.0-alpha.0"
   }

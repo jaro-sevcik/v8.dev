@@ -21,7 +21,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 
 const installPrismLanguages = require('./prism-languages.js');
-const shakyDiagrams = require('./shaky.js');
+const shakyDiagrams = require('shaky-diagram');
 
 const markdownItConfig = {
   html: true,
